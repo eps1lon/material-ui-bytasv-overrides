@@ -4,7 +4,7 @@ import withRoot from '../withRoot';
 
 class Index extends React.Component {
   render() {
-    return <TextField />;
+    return <TextField iconPosition="start" Icon="$" label="my label" />;
   }
 }
 

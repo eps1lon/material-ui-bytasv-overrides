@@ -1,9 +1,22 @@
 import React from 'react'
 import MUITextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = {
+  adornedStart: {
+    transform: 'translate(2.8em, 1em) scale(1)',
+    '&$shrink': {
+      transform: 'translate(2.8em, 0.6em) scale(.75)'
+    }
+  },
+  adornedEnd: {},
+  shrink: {},
+}
 
 const TextField = (props) => {
   const {
+    classes,
     size,
     Icon,
     iconPosition,
@@ -18,14 +31,15 @@ const TextField = (props) => {
       </InputAdornment>
     )
     InputLabelProps.shrink = 'auto'
+    InputLabelProps.classes = { shrink: classes.shrink }
     InputProps.disableUnderline = true
 
     if (iconPosition === 'end') {
       InputProps.endAdornment = IconAdornment
-      InputLabelProps.className = 'adornedEnd'
+      InputLabelProps.className = classes.adornedEnd
     } else {
       InputProps.startAdornment = IconAdornment
-      InputLabelProps.className = 'adornedStart'
+      InputLabelProps.className = classes.adornedStart
     }
   }
 
@@ -45,4 +59,4 @@ TextField.defaultProps = {
   size: 'default'
 }
 
-export default TextField
+export default withStyles(styles)(TextField)
